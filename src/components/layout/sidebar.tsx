@@ -1,0 +1,2 @@
+const navItems = ["Dashboard","Orders","Customers","Services","Payments","Receipts","Files","Reports","Staff","Settings","Activity Logs"];
+export function Sidebar() { return <aside className="hidden md:block w-64 bg-white border-r min-h-screen p-4"><h2 className="font-bold text-brand-primary mb-4">Digital OMS</h2><ul className="space-y-2 text-sm">{navItems.map((item)=><li key={item} className="rounded px-3 py-2 hover:bg-violet-50">{item}</li>)}</ul></aside>; }

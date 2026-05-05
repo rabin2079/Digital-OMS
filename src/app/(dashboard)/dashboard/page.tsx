@@ -1,0 +1,2 @@
+import { Sidebar } from "@/components/layout/sidebar";
+export default function DashboardPage() { return <div className="flex"><Sidebar /><main className="flex-1 p-6"><h1 className="text-2xl font-bold mb-4">Dashboard</h1><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{["Total Orders","Today's Collection","Pending Balance","Completed Orders"].map((kpi)=><section key={kpi} className="bg-white p-4 rounded-xl shadow-sm border"><h3 className="text-sm text-slate-500">{kpi}</h3><p className="text-xl font-semibold mt-2">--</p></section>)}</div></main></div>; }
