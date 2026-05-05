@@ -1,0 +1,2 @@
+import Nav from '@/components/Nav';import { prisma } from '@/lib/prisma';
+export default async function Page({params}:{params:{id:string}}){const customer=await prisma.customer.findUnique({where:{id:Number(params.id)},include:{orders:true}});if(!customer) return <div>Not found</div>;return <div><Nav/><div className='p-4 card m-4'><h1 className='text-xl'>{customer.name}</h1><p>{customer.phone}</p><p>{customer.address}</p><h2 className='font-semibold mt-3'>Orders</h2>{customer.orders.map(o=><p key={o.id}>{o.orderCode} - {o.status}</p>)}</div></div>}

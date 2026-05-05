@@ -1,0 +1,2 @@
+import { prisma } from '@/lib/prisma';
+export async function POST(req:Request){const f=await req.formData();await prisma.service.create({data:{name:String(f.get('name')),category:String(f.get('category')),description:String(f.get('description')||'')||null,basePrice:f.get('basePrice')?Number(f.get('basePrice')):null,active:f.get('active')==='on'}});return Response.redirect(new URL('/services',req.url));}

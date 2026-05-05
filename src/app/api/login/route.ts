@@ -1,0 +1,2 @@
+import { prisma } from '@/lib/prisma';import bcrypt from 'bcryptjs';import { createSession } from '@/lib/auth';import { redirect } from 'next/navigation';
+export async function POST(req:Request){const form=await req.formData();const email=String(form.get('email'));const password=String(form.get('password'));const user=await prisma.user.findUnique({where:{email}});if(!user||!(await bcrypt.compare(password,user.passwordHash))) return Response.redirect(new URL('/login', req.url));createSession(email);redirect('/dashboard');}
