@@ -1,0 +1,2 @@
+export function createOrderCode(nepaliYear: number, nepaliMonth: number, sequence: number) { const yearDigit = nepaliYear.toString().slice(-1); const seq = sequence.toString().padStart(3, "0"); return `DS${yearDigit}${nepaliMonth}-${seq}`; }
+export function createReceiptCode(nepaliYear: number, nepaliMonth: number, sequence: number) { const yearDigit = nepaliYear.toString().slice(-1); const seq = sequence.toString().padStart(3, "0"); return `RCPT-DS-${yearDigit}-${nepaliMonth}-${seq}`; }

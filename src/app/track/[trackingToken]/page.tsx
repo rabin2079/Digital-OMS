@@ -1,0 +1,2 @@
+interface Props { params: Promise<{ trackingToken: string }>; }
+export default async function TrackPage({ params }: Props) { const { trackingToken } = await params; return <main className="max-w-3xl mx-auto p-4 space-y-4"><h1 className="text-2xl font-bold text-brand-primary">Track Your Order</h1><p className="text-slate-600">Tracking token: {trackingToken}</p><section className="bg-white border rounded-xl p-4"><p>Public-safe order status, receipt links, and public files render here.</p></section></main>; }
