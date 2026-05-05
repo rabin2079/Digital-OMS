@@ -30,6 +30,24 @@ Production-ready starter architecture for **Digital Solution Pvt. Ltd. (Nepal)**
 - `NEXT_PUBLIC_APP_URL`
 - `NEXT_PUBLIC_COMPANY_NAME`
 
+## Hostinger / Docker Deployment Fix
+If your Hostinger build logs show `No Docker compose files found`, this repo now includes:
+- `Dockerfile`
+- `docker-compose.yml`
+- `.dockerignore`
+
+### Deploy steps
+1. Add runtime secrets in `.env` on server (or platform env panel).
+2. Build and run:
+   ```bash
+   docker compose up -d --build
+   ```
+3. Verify:
+   ```bash
+   docker compose ps
+   docker compose logs -f
+   ```
+
 ## Delivered in this implementation
 - Initial Next.js app shell with:
   - Auth login placeholder route
@@ -43,6 +61,7 @@ Production-ready starter architecture for **Digital Solution Pvt. Ltd. (Nepal)**
   - Base indexes and unique constraints
   - RLS enabled
   - Payment total recalculation stored function
+- Docker deployment files for Hostinger-compatible compose detection
 
 ## Next milestone implementation order
 1. Auth wiring and role guards
@@ -51,7 +70,7 @@ Production-ready starter architecture for **Digital Solution Pvt. Ltd. (Nepal)**
 4. Receipt PDF rendering + storage
 5. Order files + public tracking resource policies
 6. Activity timeline + reports + CSV export
-7. Deployment docs for Hostinger VPS
+7. Production deployment hardening
 
 ## Notes
 - This repository currently contains scaffolded code and migration SQL; run migrations in Supabase before feature development.
