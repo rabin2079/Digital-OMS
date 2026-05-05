@@ -1,0 +1,2 @@
+import { prisma } from '@/lib/prisma';
+export async function POST(req:Request){const f=await req.formData();await prisma.customer.create({data:{name:String(f.get('name')),phone:String(f.get('phone')),whatsapp:String(f.get('whatsapp')),email:String(f.get('email')||'')||null,address:String(f.get('address')||'')||null,notes:String(f.get('notes')||'')||null}});return Response.redirect(new URL('/customers',req.url));}

@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Nav(){return <nav className='bg-white border-b p-3 flex gap-4 text-sm'><Link href='/dashboard'>Dashboard</Link><Link href='/customers'>Customers</Link><Link href='/services'>Services</Link><Link href='/orders'>Orders</Link><Link href='/settings'>Settings</Link><form action='/api/logout' method='post'><button className='text-brandOrange'>Logout</button></form></nav>}
