@@ -1,2 +1,7 @@
+import { NextResponse } from 'next/server';
 import { clearSession } from '@/lib/auth';
-export async function POST(){clearSession(); return Response.redirect(new URL('/login','http://localhost:3000'));}
+
+export async function POST(req: Request) {
+  clearSession();
+  return NextResponse.redirect(new URL('/login', req.url));
+}

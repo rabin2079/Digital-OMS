@@ -1,9 +1,32 @@
-import { cookies } from 'next/headers';
 import crypto from 'crypto';
-const SESSION_KEY='oms_session';
-export function createSession(email:string){
- const token = crypto.createHmac('sha256',process.env.SESSION_SECRET||'dev').update(email).digest('hex');
- cookies().set(SESSION_KEY,`${email}:${token}`,{httpOnly:true,path:'/'});
+import { cookies } from 'next/headers';
+
+const SESSION_KEY = 'oms_session';
+
+function signEmail(email: string) {
+  return crypto
+    .createHmac('sha256', process.env.SESSION_SECRET || 'dev-secret')
+    .update(email)
+    .digest('hex');
 }
-export function clearSession(){ cookies().delete(SESSION_KEY); }
-export function getSessionEmail(){ const c=cookies().get(SESSION_KEY)?.value; if(!c) return null; const [email,token]=c.split(':'); const valid=crypto.createHmac('sha256',process.env.SESSION_SECRET||'dev').update(email).digest('hex'); return token===valid?email:null; }
+
+export function setSession(email: string) {
+  const value = `${email}:${signEmail(email)}`;
+  cookies().set(SESSION_KEY, value, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    path: '/',
+  });
+}
+
+export function clearSession() {
+  cookies().delete(SESSION_KEY);
+}
+
+export function parseSession(raw: string | undefined) {
+  if (!raw) return null;
+  const [email, signature] = raw.split(':');
+  if (!email || !signature) return null;
+  return signEmail(email) === signature ? email : null;
+}
