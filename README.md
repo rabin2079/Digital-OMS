@@ -34,6 +34,8 @@ Production-ready starter architecture for **Digital Solution Pvt. Ltd. (Nepal)**
 If your Hostinger build logs show `No Docker compose files found`, this repo now includes:
 - `Dockerfile`
 - `docker-compose.yml`
+- `docker-compose.yaml`
+- `compose.yaml`
 - `.dockerignore`
 
 ### Deploy steps
